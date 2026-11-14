@@ -17,6 +17,8 @@ Para septiembre a noviembre de 2026, el saldo observado fue **ARS 722.479,30** s
 
 El respaldo comprimido pesó 7.439 bytes. La restauración y verificación tardaron 2 segundos, medidos con resolución de un segundo, con el entorno destino ya arrancado. El registro incluye el SHA-256 del archivo de esa ejecución. Una copia lógica cubre el estado de la base al respaldarla. Una copia programada con una verificación periódica de restauración reduciría el intervalo de datos expuestos a una pérdida.
 
+El mismo script pasó en un runner de GitHub con Ubuntu 26.04 y Docker Engine 29.4.2. El runner construyó el proyecto desde el repositorio público, verificó los tres reportes y comprobó la nueva alta después de restaurar. [Ejecución de GitHub Actions](https://github.com/Henrys22/saldo-evi-2026/actions/runs/43654309312)
+
 ## Navegador
 
 En Edge se cargó un gasto de ARS 1.250,25 y un ingreso de ARS 1.300,00. El saldo esperado para ese mes era ARS 49,75. Se observó el mismo saldo y las dos filas siguieron visibles después de recargar y seleccionar el período. También se comprobó el selector de categoría, la tabla de evolución mensual y la vista móvil de 390 px con los importes visibles.
