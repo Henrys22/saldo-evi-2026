@@ -13,7 +13,7 @@ Saldo registra ingresos y gastos en pesos argentinos, agrupa los movimientos por
 Cloná el repositorio de la entrega y entrá en su carpeta. Desde un directorio que ya contiene el proyecto, empezá por copiar la configuración.
 
 ~~~bash
-git clone URL_DEL_REPOSITORIO saldo
+git clone https://github.com/Henrys22/saldo-evi-2026.git saldo
 cd saldo
 cp .env.example .env
 ~~~

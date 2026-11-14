@@ -27,10 +27,10 @@ En Edge se cargó un gasto de ARS 1.250,25 y un ingreso de ARS 1.300,00. El sald
 
 ## Transferencia
 
-Codex desplegó el commit `6d16714` en una máquina virtual QEMU con Alpine Linux 3.22.8, Docker Engine 28.3.3 y Compose v2.36.2. La VM tenía su propio sistema de archivos y su propio motor Docker. Para preparar el entorno, se comprobó el montaje de cgroups antes de iniciar el motor. La VM recibió un paquete Git y un respaldo lógico generado en WSL. Se verificó el SHA-256 de ambos archivos, se clonó el commit y se siguió el arranque del README con `.env.example`.
+Codex desplegó la primera revisión local (`6d16714`) en una máquina virtual QEMU con Alpine Linux 3.22.8, Docker Engine 28.3.3 y Compose v2.36.2. La VM tenía su propio sistema de archivos y su propio motor Docker. Para preparar el entorno, se comprobó el montaje de cgroups antes de iniciar el motor. La VM recibió un paquete Git y un respaldo lógico generado en WSL. Se verificó el SHA-256 de ambos archivos, se clonó el commit y se siguió el arranque del README con `.env.example`. La primera revisión pública contiene los mismos archivos. [Revisión publicada `b6b535a`](https://github.com/Henrys22/saldo-evi-2026/commit/b6b535a)
 
 Se esperaba que la aplicación iniciara con la base vacía y que el respaldo reprodujera los datos del origen. Ambos servicios arrancaron saludables. La restauración conservó las siete filas y los tres reportes, con un saldo de **ARS 722.479,30**. La VM admitió un alta adicional y conservó los ocho movimientos al recrear los contenedores. [Registro del origen y de la VM](evidencia/transferencia-vm.txt)
 
 Una segunda persona puede clonar el repositorio en el equipo de laboratorio, seguir el [arranque del README](../README.md#arranque) y ejecutar `bash scripts/verificar-compose.sh`. Para demostrar la transferencia de datos entre equipos, copiá un respaldo de prueba desde el origen y restauralo siguiendo el [procedimiento documentado](../README.md#respaldo-y-recuperación). Registrá quién hizo la prueba, qué equipo y versiones usó, el resultado esperado, el resultado observado, los ajustes y el enlace a la evidencia.
 
-La publicación en GitHub, la comprobación por otra persona y la prueba propia de cada integrante quedan pendientes de registrar.
+La comprobación por otra persona y la prueba propia de cada integrante quedan pendientes de registrar. [Repositorio público de la entrega](https://github.com/Henrys22/saldo-evi-2026)

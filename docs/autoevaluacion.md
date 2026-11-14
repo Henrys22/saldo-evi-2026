@@ -4,7 +4,7 @@ Revisión técnica preliminar para V1 con la rúbrica 3.1 del TP integrador. Cad
 
 | Criterio | Nivel preliminar V1 | Evidencia y condición de cierre |
 | --- | --- | --- |
-| Despliegue reproducible | En proceso | [Arranque documentado](../README.md#arranque) y [construcción desde un clon Git en una VM](evidencias.md#transferencia). Falta la publicación y la comprobación por otra persona con el README. |
+| Despliegue reproducible | En proceso | [Arranque documentado](../README.md#arranque), [construcción desde un clon Git en una VM](evidencias.md#transferencia) y [repositorio público](https://github.com/Henrys22/saldo-evi-2026). Falta la comprobación por otra persona con el README. |
 | Persistencia y recuperación | Logrado | [Restauración de un respaldo en una VM con otro motor Docker](evidencias.md#transferencia), comparación de filas e importes y nueva alta tras restaurar. |
 | Red y exposición | Logrado | [Diagrama y justificación](arquitectura.md#red-exposición-y-permisos) y tabla de puertos de los dos servicios en [el registro de Compose](evidencia/compose.txt). |
 | Seguridad básica | Logrado | [Configuración ficticia](../.env.example), [archivos excluidos](../.gitignore) y [permisos de aplicación](../db/01-inicio.sql). |
