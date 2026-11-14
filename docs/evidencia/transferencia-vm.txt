@@ -1,0 +1,37 @@
+Saldo · 14/11/2026
+Extracto de las consolas del origen y del destino.
+
+== Origen: proyecto aislado en Ubuntu sobre WSL 2 ==
+ Container saldo-origen-vm-1794698613-12727-db-1  Healthy
+ Container saldo-origen-vm-1794698613-12727-app-1  Healthy
+Alta de siete movimientos sintéticos y rechazo de datos inválidos verificados.
+Salud, frontend, siete filas exactas y los tres reportes verificados.
+{"ingresos":"1030000.30","gastos":"307521.00","saldo":"722479.30"}
+5a64a6c74b9a2cc0acc7af8e1bbf9ae84a2f15f69ed03d8d73b18fecabebfa68  saldo.bundle
+a4c849f430336d29004bea7e0215ba66a8789e5be7234745be7aa7ea4e798a74  saldo.dump
+
+== Entorno destino independiente ==
+3.22.8
+Linux 6.12.115-0-virt x86_64 Linux
+saldo-destino
+Docker cliente 28.3.3, motor 28.3.3
+Docker Compose version v2.36.2
+saldo.bundle: OK
+saldo.dump: OK
+Cloning into '/root/saldo'...
+6d167140d888c3f9107be29cdf887ce780d5535f
+== Arranque según el README ==
+NAME          IMAGE                   COMMAND                  SERVICE   CREATED          STATUS                    PORTS
+saldo-app-1   saldo-app               "docker-entrypoint.s…"   app       11 seconds ago   Up 5 seconds (healthy)    127.0.0.1:8080->3000/tcp
+saldo-db-1    postgres:17.11-alpine   "docker-entrypoint.s…"   db        11 seconds ago   Up 11 seconds (healthy)   5432/tcp
+{"estado":"ok"}
+Base destino vacía antes de importar.
+== Importación del respaldo del entorno origen ==
+Salud, frontend, siete filas exactas y los tres reportes verificados.
+{"ingresos":"1030000.30","gastos":"307521.00","saldo":"722479.30"}
+La base restaurada admite altas y la secuencia continuó en 8.
+== Persistencia en el equipo destino ==
+Salud, frontend, siete filas exactas y los tres reportes verificados.
+{"ingresos":"1030000.30","gastos":"307521.00","saldo":"722479.30"}
+Ocho movimientos conservados tras recrear los contenedores del destino.
+Código de salida de la prueba en la VM: 0

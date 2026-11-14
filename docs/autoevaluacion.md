@@ -4,13 +4,13 @@ Revisión técnica preliminar para V1 con la rúbrica 3.1 del TP integrador. Cad
 
 | Criterio | Nivel preliminar V1 | Evidencia y condición de cierre |
 | --- | --- | --- |
-| Despliegue reproducible | En proceso | [Arranque documentado](../README.md#arranque) y [arranque observado](evidencias.md#docker-compose). Falta que otra persona lo reproduzca en otro equipo con el repositorio y el README. |
-| Persistencia y recuperación | Logrado | [Prueba con dos proyectos y volúmenes independientes](evidencias.md#docker-compose), comparación de filas e importes y nueva alta tras restaurar. |
+| Despliegue reproducible | En proceso | [Arranque documentado](../README.md#arranque) y [construcción desde un clon Git en una VM](evidencias.md#transferencia). Falta la publicación y la comprobación por otra persona con el README. |
+| Persistencia y recuperación | Logrado | [Restauración de un respaldo en una VM con otro motor Docker](evidencias.md#transferencia), comparación de filas e importes y nueva alta tras restaurar. |
 | Red y exposición | Logrado | [Diagrama y justificación](arquitectura.md#red-exposición-y-permisos) y tabla de puertos de los dos servicios en [el registro de Compose](evidencia/compose.txt). |
 | Seguridad básica | Logrado | [Configuración ficticia](../.env.example), [archivos excluidos](../.gitignore) y [permisos de aplicación](../db/01-inicio.sql). |
 | Evidencias y bitácora | En proceso | [Resultados esperados y observados](evidencias.md) y [dos decisiones](bitacora.md). Falta incorporar autoría y prueba propia de cada integrante. |
 | Uso documentado de la IA | En proceso | [Consultas, decisiones y comprobaciones de Codex](bitacora.md). Falta registrar qué aceptó o descartó y cómo lo comprobó cada integrante. |
-| Transferencia y defensa | En proceso | [Guía de verificación en otro equipo](evidencias.md#transferencia). Falta el registro de la prueba externa y la demostración de cada integrante. |
+| Transferencia y defensa | En proceso | [Transferencia entre dos motores Docker y guía para repetirla](evidencias.md#transferencia). Falta la demostración de cada integrante. |
 
 ## Seguimiento de V2
 
