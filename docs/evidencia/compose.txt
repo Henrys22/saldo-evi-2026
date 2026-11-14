@@ -1,0 +1,209 @@
+
+== Construcción y arranque ==
+Docker cliente 28.5.2, motor 28.5.2
+Docker Compose version v2.40.3
+#1 [internal] load local bake definitions
+#1 reading from stdin 527B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 277B 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine
+#3 DONE 0.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 109B 0.0s done
+#4 DONE 0.0s
+
+#5 [1/6] FROM docker.io/library/node:24.21.0-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 261B 0.1s done
+#6 DONE 0.1s
+
+#7 [2/6] WORKDIR /app
+#7 CACHED
+
+#8 [3/6] COPY package.json package-lock.json ./
+#8 CACHED
+
+#9 [4/6] RUN npm ci --omit=dev --no-audit --no-fund
+#9 CACHED
+
+#10 [5/6] COPY src/ ./src/
+#10 CACHED
+
+#11 [6/6] COPY public/ ./public/
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 writing image sha256:367dcf22bad08ae7bfcbb933495c9c912cfc178c689920a206a0b08173a65bb1 done
+#12 naming to docker.io/library/saldo-prueba-1794698223-6471-app done
+#12 DONE 0.0s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ saldo-prueba-1794698223-6471-app  Built
+ Network saldo-prueba-1794698223-6471_finanzas  Creating
+ Network saldo-prueba-1794698223-6471_finanzas  Created
+ Volume saldo-prueba-1794698223-6471_pgdatos  Creating
+ Volume saldo-prueba-1794698223-6471_pgdatos  Created
+ Container saldo-prueba-1794698223-6471-db-1  Creating
+ Container saldo-prueba-1794698223-6471-db-1  Created
+ Container saldo-prueba-1794698223-6471-app-1  Creating
+ Container saldo-prueba-1794698223-6471-app-1  Created
+ Container saldo-prueba-1794698223-6471-db-1  Starting
+ Container saldo-prueba-1794698223-6471-db-1  Started
+ Container saldo-prueba-1794698223-6471-db-1  Waiting
+ Container saldo-prueba-1794698223-6471-db-1  Healthy
+ Container saldo-prueba-1794698223-6471-app-1  Starting
+ Container saldo-prueba-1794698223-6471-app-1  Started
+ Container saldo-prueba-1794698223-6471-app-1  Waiting
+ Container saldo-prueba-1794698223-6471-db-1  Waiting
+ Container saldo-prueba-1794698223-6471-db-1  Healthy
+ Container saldo-prueba-1794698223-6471-app-1  Healthy
+NAME                                 IMAGE                              COMMAND                  SERVICE   CREATED          STATUS                    PORTS
+saldo-prueba-1794698223-6471-app-1   saldo-prueba-1794698223-6471-app   "docker-entrypoint.s…"   app       12 seconds ago   Up 6 seconds (healthy)    127.0.0.1:18080->3000/tcp
+saldo-prueba-1794698223-6471-db-1    postgres:17.11-alpine              "docker-entrypoint.s…"   db        12 seconds ago   Up 11 seconds (healthy)   5432/tcp
+v24.21.0
+17.11
+Alta de siete movimientos sintéticos y rechazo de datos inválidos verificados.
+Salud, frontend, siete filas exactas y los tres reportes verificados.
+{"ingresos":"1030000.30","gastos":"307521.00","saldo":"722479.30"}
+
+== Persistencia al recrear servicios ==
+ Container saldo-prueba-1794698223-6471-app-1  Stopping
+ Container saldo-prueba-1794698223-6471-app-1  Stopped
+ Container saldo-prueba-1794698223-6471-app-1  Removing
+ Container saldo-prueba-1794698223-6471-app-1  Removed
+ Container saldo-prueba-1794698223-6471-db-1  Stopping
+ Container saldo-prueba-1794698223-6471-db-1  Stopped
+ Container saldo-prueba-1794698223-6471-db-1  Removing
+ Container saldo-prueba-1794698223-6471-db-1  Removed
+ Network saldo-prueba-1794698223-6471_finanzas  Removing
+ Network saldo-prueba-1794698223-6471_finanzas  Removed
+ Network saldo-prueba-1794698223-6471_finanzas  Creating
+ Network saldo-prueba-1794698223-6471_finanzas  Created
+ Container saldo-prueba-1794698223-6471-db-1  Creating
+ Container saldo-prueba-1794698223-6471-db-1  Created
+ Container saldo-prueba-1794698223-6471-app-1  Creating
+ Container saldo-prueba-1794698223-6471-app-1  Created
+ Container saldo-prueba-1794698223-6471-db-1  Starting
+ Container saldo-prueba-1794698223-6471-db-1  Started
+ Container saldo-prueba-1794698223-6471-db-1  Waiting
+ Container saldo-prueba-1794698223-6471-db-1  Healthy
+ Container saldo-prueba-1794698223-6471-app-1  Starting
+ Container saldo-prueba-1794698223-6471-app-1  Started
+ Container saldo-prueba-1794698223-6471-app-1  Waiting
+ Container saldo-prueba-1794698223-6471-db-1  Waiting
+ Container saldo-prueba-1794698223-6471-db-1  Healthy
+ Container saldo-prueba-1794698223-6471-app-1  Healthy
+Salud, frontend, siete filas exactas y los tres reportes verificados.
+{"ingresos":"1030000.30","gastos":"307521.00","saldo":"722479.30"}
+
+== Respaldo y recuperación en un volumen nuevo ==
+ saldo-prueba-1794698223-6471-db-1 copy saldo-prueba-1794698223-6471-db-1:/tmp/saldo.dump to /tmp/tmp.wxFPD3tTBF/saldo.dump Copying
+ saldo-prueba-1794698223-6471-db-1 copy saldo-prueba-1794698223-6471-db-1:/tmp/saldo.dump to /tmp/tmp.wxFPD3tTBF/saldo.dump Copied
+Tamaño del respaldo (bytes): 7439
+SHA-256: dcf3cfb36ba9c93e9c5cd6ac06e55c9a64c85e1b4cec3c0d987c9eb34455aadd
+ Container saldo-prueba-1794698223-6471-app-1  Stopping
+ Container saldo-prueba-1794698223-6471-app-1  Stopped
+ Container saldo-prueba-1794698223-6471-app-1  Removing
+ Container saldo-prueba-1794698223-6471-app-1  Removed
+ Container saldo-prueba-1794698223-6471-db-1  Stopping
+ Container saldo-prueba-1794698223-6471-db-1  Stopped
+ Container saldo-prueba-1794698223-6471-db-1  Removing
+ Container saldo-prueba-1794698223-6471-db-1  Removed
+ Network saldo-prueba-1794698223-6471_finanzas  Removing
+ Network saldo-prueba-1794698223-6471_finanzas  Removed
+#1 [internal] load local bake definitions
+#1 reading from stdin 535B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 277B 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:24.21.0-alpine
+#3 DONE 0.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 109B 0.0s done
+#4 DONE 0.0s
+
+#5 [1/6] FROM docker.io/library/node:24.21.0-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 261B 0.1s done
+#6 DONE 0.1s
+
+#7 [2/6] WORKDIR /app
+#7 CACHED
+
+#8 [3/6] COPY package.json package-lock.json ./
+#8 CACHED
+
+#9 [4/6] RUN npm ci --omit=dev --no-audit --no-fund
+#9 CACHED
+
+#10 [5/6] COPY src/ ./src/
+#10 CACHED
+
+#11 [6/6] COPY public/ ./public/
+#11 CACHED
+
+#12 exporting to image
+#12 exporting layers done
+#12 writing image sha256:c6fec589e4db936bdc68ecc973da1b17d95e16051554be11ae7f859787648c45 done
+#12 naming to docker.io/library/saldo-recuperado-1794698223-6471-app done
+#12 DONE 0.0s
+
+#13 resolving provenance for metadata file
+#13 DONE 0.0s
+ saldo-recuperado-1794698223-6471-app  Built
+ Network saldo-recuperado-1794698223-6471_finanzas  Creating
+ Network saldo-recuperado-1794698223-6471_finanzas  Created
+ Volume saldo-recuperado-1794698223-6471_pgdatos  Creating
+ Volume saldo-recuperado-1794698223-6471_pgdatos  Created
+ Container saldo-recuperado-1794698223-6471-db-1  Creating
+ Container saldo-recuperado-1794698223-6471-db-1  Created
+ Container saldo-recuperado-1794698223-6471-app-1  Creating
+ Container saldo-recuperado-1794698223-6471-app-1  Created
+ Container saldo-recuperado-1794698223-6471-db-1  Starting
+ Container saldo-recuperado-1794698223-6471-db-1  Started
+ Container saldo-recuperado-1794698223-6471-db-1  Waiting
+ Container saldo-recuperado-1794698223-6471-db-1  Healthy
+ Container saldo-recuperado-1794698223-6471-app-1  Starting
+ Container saldo-recuperado-1794698223-6471-app-1  Started
+ Container saldo-recuperado-1794698223-6471-db-1  Waiting
+ Container saldo-recuperado-1794698223-6471-app-1  Waiting
+ Container saldo-recuperado-1794698223-6471-db-1  Healthy
+ Container saldo-recuperado-1794698223-6471-app-1  Healthy
+NAME                                     IMAGE                                  COMMAND                  SERVICE   CREATED          STATUS                    PORTS
+saldo-recuperado-1794698223-6471-app-1   saldo-recuperado-1794698223-6471-app   "docker-entrypoint.s…"   app       12 seconds ago   Up 6 seconds (healthy)    127.0.0.1:18081->3000/tcp
+saldo-recuperado-1794698223-6471-db-1    postgres:17.11-alpine                  "docker-entrypoint.s…"   db        12 seconds ago   Up 11 seconds (healthy)   5432/tcp
+ saldo-recuperado-1794698223-6471-db-1 copy /tmp/tmp.wxFPD3tTBF/saldo.dump to saldo-recuperado-1794698223-6471-db-1:/tmp/saldo.dump Copying
+ saldo-recuperado-1794698223-6471-db-1 copy /tmp/tmp.wxFPD3tTBF/saldo.dump to saldo-recuperado-1794698223-6471-db-1:/tmp/saldo.dump Copied
+Salud, frontend, siete filas exactas y los tres reportes verificados.
+{"ingresos":"1030000.30","gastos":"307521.00","saldo":"722479.30"}
+La base restaurada admite altas y la secuencia continuó en 8.
+Tiempo de restauración y verificación: 2 s, resolución de un segundo.
+ Volume saldo-prueba-1794698223-6471_pgdatos  Removing
+ Volume saldo-prueba-1794698223-6471_pgdatos  Removed
+ Container saldo-recuperado-1794698223-6471-app-1  Stopping
+ Container saldo-recuperado-1794698223-6471-app-1  Stopped
+ Container saldo-recuperado-1794698223-6471-app-1  Removing
+ Container saldo-recuperado-1794698223-6471-app-1  Removed
+ Container saldo-recuperado-1794698223-6471-db-1  Stopping
+ Container saldo-recuperado-1794698223-6471-db-1  Stopped
+ Container saldo-recuperado-1794698223-6471-db-1  Removing
+ Container saldo-recuperado-1794698223-6471-db-1  Removed
+ Volume saldo-recuperado-1794698223-6471_pgdatos  Removing
+ Network saldo-recuperado-1794698223-6471_finanzas  Removing
+ Volume saldo-recuperado-1794698223-6471_pgdatos  Removed
+ Network saldo-recuperado-1794698223-6471_finanzas  Removed

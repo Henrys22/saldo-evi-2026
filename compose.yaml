@@ -1,0 +1,49 @@
+name: saldo
+
+services:
+  app:
+    build: .
+    init: true
+    environment:
+      PGHOST: db
+      PGPORT: 5432
+      PGDATABASE: finanzas
+      PGUSER: finanzas_app
+      PGPASSWORD: ${APP_DB_PASSWORD:?Configurá APP_DB_PASSWORD en .env}
+    ports:
+      - "127.0.0.1:${WEB_PORT:-8080}:3000"
+    networks: [finanzas]
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/salud').then(r => { process.exitCode = r.ok ? 0 : 1 }).catch(() => { process.exitCode = 1 })"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: unless-stopped
+
+  db:
+    image: postgres:17.11-alpine
+    environment:
+      POSTGRES_DB: finanzas
+      POSTGRES_USER: finanzas_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configurá POSTGRES_PASSWORD en .env}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?Configurá APP_DB_PASSWORD en .env}
+    volumes:
+      - pgdatos:/var/lib/postgresql/data
+      - ./db/01-inicio.sql:/docker-entrypoint-initdb.d/01-inicio.sql:ro
+    networks: [finanzas]
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "finanzas_admin", "-d", "finanzas"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+networks:
+  finanzas:
+    driver: bridge
+
+volumes:
+  pgdatos:

@@ -1,0 +1,12 @@
+{
+  "name": "saldo-finanzas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": { "start": "node src/server.js" },
+  "dependencies": {
+    "express": "5.2.1",
+    "pg": "8.16.3"
+  }
+}

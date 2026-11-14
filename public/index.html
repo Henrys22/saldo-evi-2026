@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#18362d">
+  <title>Saldo · Finanzas personales</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#principal">Ir al contenido</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#principal" aria-label="Saldo, inicio"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>Saldo</a>
+      <nav aria-label="Secciones">
+        <a href="#principal">Resumen</a>
+        <a href="#movimientos">Movimientos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="principal" class="container">
+    <div class="page-heading">
+      <div>
+        <p class="eyebrow">FINANZAS PERSONALES <span aria-hidden="true">·</span> ARS</p>
+        <h1>Resumen financiero</h1>
+      </div>
+      <button type="button" class="button primary new-button" id="nuevo"><span aria-hidden="true">+</span> Nuevo movimiento</button>
+    </div>
+
+    <form class="filters" id="filtros" aria-label="Período de consulta">
+      <span class="filter-title">Período</span>
+      <label>Desde <input type="date" id="desde" required min="1900-01-01" max="2099-12-31"></label>
+      <label>Hasta <input type="date" id="hasta" required min="1900-01-01" max="2099-12-31"></label>
+      <button class="button outline" type="submit">Aplicar</button>
+      <p class="filter-error" id="error-filtros" role="alert" hidden></p>
+    </form>
+
+    <p class="notice" id="estado" role="status" aria-live="polite"></p>
+    <p class="notice error" id="error-datos" role="alert" hidden></p>
+
+    <section aria-labelledby="balance-titulo">
+      <h2 class="sr-only" id="balance-titulo">Balance del período</h2>
+      <div class="metrics">
+        <article class="metric balance">
+          <span class="metric-icon" aria-hidden="true">=</span>
+          <h3>Saldo del período</h3>
+          <strong id="saldo">—</strong>
+        </article>
+        <article class="metric">
+          <span class="metric-icon up" aria-hidden="true">↗</span>
+          <h3>Ingresos</h3>
+          <strong id="ingresos">—</strong>
+        </article>
+        <article class="metric">
+          <span class="metric-icon down" aria-hidden="true">↘</span>
+          <h3>Gastos</h3>
+          <strong id="gastos">—</strong>
+        </article>
+      </div>
+    </section>
+
+    <div class="reports">
+      <section class="panel" aria-labelledby="evolucion-titulo">
+        <div class="panel-heading">
+          <h2 id="evolucion-titulo">Evolución mensual</h2>
+          <div class="legend" aria-hidden="true">
+            <span><i class="dot income"></i>Ingresos</span>
+            <span><i class="dot expense"></i>Gastos</span>
+          </div>
+        </div>
+        <p class="empty" id="mensual-vacio">Cargando evolución…</p>
+        <div class="horizontal-scroll" id="grafico" aria-hidden="true" hidden></div>
+        <details id="detalle-mensual" hidden>
+          <summary>Ver totales por mes</summary>
+          <div class="horizontal-scroll" tabindex="0" role="region" aria-label="Tabla de evolución mensual">
+            <table>
+              <thead><tr><th scope="col">Mes</th><th scope="col" class="number">Ingresos</th><th scope="col" class="number">Gastos</th><th scope="col" class="number">Saldo</th></tr></thead>
+              <tbody id="tabla-mensual"></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+
+      <section class="panel" aria-labelledby="categorias-titulo">
+        <div class="panel-heading">
+          <h2 id="categorias-titulo">Por categoría</h2>
+          <label class="sr-only" for="tipo-categorias">Tipo de movimiento del reporte</label>
+          <select id="tipo-categorias">
+            <option value="gasto">Gastos</option>
+            <option value="ingreso">Ingresos</option>
+          </select>
+        </div>
+        <div id="categorias"><p class="empty">Cargando categorías…</p></div>
+      </section>
+    </div>
+
+    <section id="movimientos" class="panel transactions" aria-labelledby="movimientos-titulo">
+      <div class="panel-heading">
+        <h2 id="movimientos-titulo">Movimientos</h2>
+      </div>
+      <p class="empty" id="sin-movimientos">Cargando movimientos…</p>
+      <div class="horizontal-scroll" id="detalle-movimientos" tabindex="0" role="region" aria-label="Tabla de movimientos" hidden>
+        <table>
+          <thead><tr><th scope="col">Descripción</th><th scope="col" class="movement-column">Categoría</th><th scope="col" class="movement-column">Fecha</th><th scope="col" class="movement-column">Tipo</th><th scope="col" class="number">Monto</th></tr></thead>
+          <tbody id="tabla-movimientos"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="paginacion" hidden>
+        <button class="button outline" type="button" id="anterior">Anterior</button>
+        <span id="pagina"></span>
+        <button class="button outline" type="button" id="siguiente">Siguiente</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="alta" aria-labelledby="alta-titulo">
+    <form id="form-movimiento">
+      <div class="dialog-heading">
+        <h2 id="alta-titulo">Nuevo movimiento</h2>
+        <button class="close button" id="cerrar" type="button" aria-label="Cerrar">×</button>
+      </div>
+      <div class="form-grid">
+        <label>Tipo <select name="tipo" id="tipo" required autofocus><option value="gasto">Gasto</option><option value="ingreso">Ingreso</option></select></label>
+        <label>Categoría <select name="categoriaId" id="categoria" required></select></label>
+        <label>Fecha <input type="date" name="fecha" id="fecha" min="1900-01-01" max="2099-12-31" required></label>
+        <label>Monto en ARS <input name="monto" type="text" inputmode="decimal" placeholder="0,00" pattern="[0-9]{1,10}([.,][0-9]{1,2})?" maxlength="13" required></label>
+        <label class="wide">Descripción <input name="descripcion" maxlength="120" required placeholder="Ej. Compra de supermercado"></label>
+      </div>
+      <p class="form-error" id="error-alta" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button class="button outline" id="cancelar" type="button">Cancelar</button>
+        <button class="button primary" id="guardar" type="submit">Guardar movimiento</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
